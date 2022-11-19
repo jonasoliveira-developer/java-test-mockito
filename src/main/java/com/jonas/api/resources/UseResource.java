@@ -2,6 +2,7 @@ package com.jonas.api.resources;
 
 import com.jonas.api.domain.User;
 import com.jonas.api.services.UserService;
+import com.jonas.api.services.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/users")
 public class UseResource {
     @Autowired
-    private UserService service;
+    private UserServiceImpl service;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> findById(@PathVariable Integer id) {
