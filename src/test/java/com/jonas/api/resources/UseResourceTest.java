@@ -35,8 +35,8 @@ class UseResourceTest {
     public static final String OBJETO_NÃO_ENCONTRADO = "Objeto não encontrado";
     public static final int INDEX = 0;
 
-    private User user;
-    private UserDto userDto;
+    private User user = new User();
+    private UserDto userDto = new UserDto();
 
     @InjectMocks
     private UseResource resource;
