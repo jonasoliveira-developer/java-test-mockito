@@ -8,6 +8,7 @@ import com.jonas.api.services.exceptions.DataIntegratyViolationException;
 import com.jonas.api.services.exceptions.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(UserDto obj) {
         findByEmail(obj);
+        obj.setPassword( new BCryptPasswordEncoder().encode(obj.getPassword())) ;
         return repository.save(mapper.map(obj, User.class));
     }
 

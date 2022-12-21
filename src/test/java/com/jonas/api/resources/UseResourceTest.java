@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -35,7 +34,7 @@ class UseResourceTest {
     public static final String OBJETO_NÃO_ENCONTRADO = "Objeto não encontrado";
     public static final int INDEX = 0;
 
-    private User user = new User();
+    private User user = new User(user.getId(), user.getEmail(), user.getPassword(), true, true, true, user.getAuthorities());
     private UserDto userDto = new UserDto();
 
     @InjectMocks
