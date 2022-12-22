@@ -34,8 +34,9 @@ class UseResourceTest {
     public static final String OBJETO_NÃO_ENCONTRADO = "Objeto não encontrado";
     public static final int INDEX = 0;
 
-    private User user = new User(user.getId(), user.getEmail(), user.getPassword(), true, true, true, user.getAuthorities());
+
     private UserDto userDto = new UserDto();
+    private User user = new User();
 
     @InjectMocks
     private UseResource resource;
@@ -134,7 +135,7 @@ class UseResourceTest {
     }
 
     private void startUser() {
-        user = new User(ID, NAME, EMAIL, PASSWORD);
+        user = new User(ID, NAME, EMAIL, PASSWORD, List.of(null));
         userDto = new UserDto(ID, NAME, EMAIL, PASSWORD);
 
     }

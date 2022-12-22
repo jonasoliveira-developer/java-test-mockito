@@ -60,13 +60,14 @@ class UserServiceImplTest {
         assertEquals(User.class, response.getClass());
         assertEquals(ID, response.getId());
     }
+
     @Test
     void whenFindByIdThenReturnAnObjectNotFoundException() {
-        when(repository.findById(anyInt())).thenThrow( new ObjectNotFoundException(OBJETO_NÃO_ENCONTRADO));
+        when(repository.findById(anyInt())).thenThrow(new ObjectNotFoundException(OBJETO_NÃO_ENCONTRADO));
 
         try {
             service.findById(ID);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             assertEquals(ObjectNotFoundException.class, ex.getClass());
             assertEquals(OBJETO_NÃO_ENCONTRADO, ex.getMessage());
         }
@@ -90,14 +91,14 @@ class UserServiceImplTest {
 
     @Test
     void whenCreateThenReturnSuccess() {
-       when(repository.save(any())).thenReturn(user);
-       User response = service.create(userDto);
-       assertNotNull(response);
-       assertEquals(User.class, response.getClass());
-       assertEquals(ID, response.getId());
-       assertEquals(NAME, response.getName());
-       assertEquals(EMAIL, response.getEmail());
-       assertEquals(PASSWORD, response.getPassword());
+        when(repository.save(any())).thenReturn(user);
+        User response = service.create(userDto);
+        assertNotNull(response);
+        assertEquals(User.class, response.getClass());
+        assertEquals(ID, response.getId());
+        assertEquals(NAME, response.getName());
+        assertEquals(EMAIL, response.getEmail());
+        assertEquals(PASSWORD, response.getPassword());
 
     }
 
@@ -109,9 +110,9 @@ class UserServiceImplTest {
             optionalUser.get().setId(2);
             service.create(userDto);
 
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             assertEquals(DataIntegratyViolationException.class, ex.getClass());
-            assertEquals("E-mail já cadastrado!", ex.getMessage() );
+            assertEquals("E-mail já cadastrado!", ex.getMessage());
         }
 
     }
@@ -139,9 +140,9 @@ class UserServiceImplTest {
             optionalUser.get().setId(2);
             service.update(userDto);
 
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             assertEquals(DataIntegratyViolationException.class, ex.getClass());
-            assertEquals("E-mail já cadastrado!", ex.getMessage() );
+            assertEquals("E-mail já cadastrado!", ex.getMessage());
         }
 
     }
@@ -162,14 +163,14 @@ class UserServiceImplTest {
 
         try {
             service.delete(ID);
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             assertEquals(ObjectNotFoundException.class, ex.getClass());
         }
     }
 
     private void startUser() {
-        user = new User(ID, NAME, EMAIL, PASSWORD);
+        user = new User(ID, NAME, EMAIL, PASSWORD, null);
         userDto = new UserDto(ID, NAME, EMAIL, PASSWORD);
-        optionalUser = Optional.of(new User(ID, NAME, EMAIL, PASSWORD));
+        optionalUser = Optional.of(new User(ID, NAME, EMAIL, PASSWORD, null));
     }
 }
